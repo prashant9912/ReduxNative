@@ -5,7 +5,7 @@ import {connect } from 'react-redux'
 import { StackNavigator } from "react-navigation";
 
 
-import {add,additem} from '../Redux/actions'
+import {add,additem,addAsyncHandler} from '../Redux/actions'
 
 
 class App extends Component {
@@ -21,19 +21,26 @@ class App extends Component {
           <Text style={{fontSize:30,color:'white'}}>{this.props.counter}</Text>
         </View>
         <View style={{padding:10}}>
-        <Button block light onPress={()=>{this.props.plus(1)}}><Text>Click Me!</Text></Button>
+        <Button block light onPress={()=>{this.props.plus(1)}}><Text>Counter+1</Text></Button>
 
-        <Button block light style={{marginTop:10}} onPress={()=>{this.props.additem(1)}}><Text>Add Item</Text></Button>
+        <Button block light style={{marginTop:10}} onPress={()=>{this.props.additem(1)}}><Text>Add Item to list</Text></Button>
       
 
-        <Button block success style={{marginTop:10}} onPress={()=>navigate('Profile')}><Text>Cart</Text></Button>
+        <Button block success style={{marginTop:10}} onPress={()=>navigate('Profile')}><Text>Next Page</Text></Button>
 
 
-<View style={{color:'white',alignItems:'center',marginTop:10}}>
-        {this.props.items.map((v,k)=>(
-          <Text key={k} style={{color:'white',fontSize:18}}>{v}</Text>
-        ))}
-</View>
+        <View style={{color:'white',alignItems:'center',marginTop:10}}>
+                {this.props.items.map((v,k)=>(
+                  <Text key={k} style={{color:'white',fontSize:18}}>{v}</Text>
+                ))}
+        </View>
+
+
+        <View style={{padding:10,alignContent:'center',alignItems:'center'}}>
+        <Text style={{fontSize:30,color:'white'}}>Thunk Redux Async Counter</Text>
+          <Text style={{fontSize:30,color:'white'}}>{this.props.countAsync}</Text>
+        <Button block light onPress={()=>{this.props.plusAsync(1)}}><Text>Counter+1</Text></Button>
+          </View>
 
         </View>
         
@@ -49,7 +56,8 @@ const mapStatetoProps = (state)=>{
   console.log(state)
   return {
     counter:state.store.count,
-    items:state.store.items
+    items:state.store.items,
+    countAsync:state.store.countAsync
   }
 }
 
@@ -58,7 +66,8 @@ const mapDispatchtoProps = (dispatch)=>{
   console.log(dispatch)
   return{
     plus:(val)=>dispatch(add(val)),
-    additem:(val)=>dispatch(additem('name'))
+    additem:(val)=>dispatch(additem('name')),
+    plusAsync:(val)=>dispatch(addAsyncHandler(val))
   }
 }
 

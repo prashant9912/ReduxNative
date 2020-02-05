@@ -7,6 +7,7 @@ import {ADD,DELETE, ADD_ITEM } from './actions'
 
 const initialState = {
     count:0,
+    countAsync:0,
     items:[]
 }
 
@@ -28,6 +29,14 @@ const reducer = (state = initialState, action ) =>{
                 items:[...state.items,action.data]
             })
 
+        }
+
+        case 'ADD_Async':{
+            console.log(state)
+            return({
+                ...state,
+                countAsync:state.countAsync+action.data
+            })
         }
         // case ADD_ITEM:
         //     return{
