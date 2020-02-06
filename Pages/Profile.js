@@ -9,9 +9,10 @@ class Profile extends Component {
         return (
             <View style={{padding:10}}>
                 <Text style={{fontSize:20}}>Redux Counter <Text style={{color:'red'}}>{this.props.counter}</Text></Text>
-                <Text style={{fontSize:20}}>Redux Counter <Text style={{color:'red'}}>{this.props.counterAsync}</Text></Text>
+                <Text style={{fontSize:20}}>Redux Thunk Counter <Text style={{color:'red'}}>{this.props.counterAsync}</Text></Text>
+                <Text style={{fontSize:20}}>Redux Saga Counter <Text style={{color:'red'}}>{this.props.countSaga}</Text></Text>
 
-                <Text style={{fontSize:20,marginTop:20,textDecorationLine:1}}>ITEMS in Store  </Text>
+                <Text style={{fontSize:20,marginTop:20,textDecorationLine:'underline'}}>ITEMS in Store  </Text>
 
                 <View style={{padding:10,marginTop:0}}>{this.props.items.map((v,k)=>(
                                     <Text key={k} style={{color:'black',fontSize:18}}>{v}</Text>
@@ -30,7 +31,8 @@ const mapStatetoProp = (state)=>{
 return{
     counter: state.store.count,
     items:state.store.items,
-    counterAsync:state.store.countAsync
+    counterAsync:state.store.countAsync,
+    countSaga:state.store.countSaga
 }
 }
 

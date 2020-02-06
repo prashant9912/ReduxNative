@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Text, StyleSheet, View, SafeAreaView} from 'react-native';
-import { Container, Header, Content, Button } from 'native-base';
+import { StyleSheet, View, SafeAreaView} from 'react-native';
+import { Container, Header, Content, Button,Text } from 'native-base';
 import {connect } from 'react-redux'
 import { StackNavigator } from "react-navigation";
 
@@ -30,12 +30,11 @@ class App extends Component {
         <Button block light style={{marginTop:10}} onPress={()=>{this.props.additem(1)}}><Text>Add Item to list</Text></Button>
       
 
-        <Button block success style={{marginTop:10}} onPress={()=>navigate('Profile')}><Text>Next Page</Text></Button>
 
 
         <View style={{color:'white',alignItems:'center',marginTop:10}}>
                 {this.props.items.map((v,k)=>(
-                  <Text key={k} style={{color:'white',fontSize:18}}>{v}  helloi</Text>
+                  <Text key={k} style={{color:'white',fontSize:18}}>"{v}"  Added</Text>
                 ))}
         </View>
 
@@ -56,6 +55,10 @@ class App extends Component {
 
         </View>
         
+        <Button block success style={{marginTop:10}} onPress={()=>navigate('Profile')}><Text>Next Page</Text></Button>
+
+        <Button block primary style={{marginTop:10}} onPress={()=>this.props.clear()}><Text style={{color:'white'}}>Clear Store</Text></Button>
+
       </SafeAreaView>
     );
   }
@@ -80,9 +83,10 @@ const mapDispatchtoProps = (dispatch)=>{
   console.log(dispatch)
   return{
     plus:(val)=>dispatch(add(val)),
-    additem:(val)=>dispatch(additem('name')),
+    additem:(val)=>dispatch(additem('item')),
     // plusAsync:(val)=>dispatch(addAsyncHandler(val)) //Thunk
-    plusAsync:(val)=>dispatch(addsaga(val)) //saga
+    plusAsync:(val)=>dispatch(addsaga(val)), //saga
+    clear:()=>dispatch({type:'CLEAR'})
 
   }
 }

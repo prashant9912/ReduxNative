@@ -55,8 +55,8 @@ const reducer = (state = initialState, action ) =>{
 
         //     }
 
-        case DELETE:
-            return;
+        case 'CLEAR':
+            return initialState;
         default:
             return state
     }
