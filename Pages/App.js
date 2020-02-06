@@ -5,13 +5,17 @@ import {connect } from 'react-redux'
 import { StackNavigator } from "react-navigation";
 
 
-import {add,additem,addAsyncHandler} from '../Redux/actions'
+import {add,additem,addAsyncHandler,addsaga} from '../Redux/actions'
+
 
 
 class App extends Component {
   static navigationOptions = {
     title: 'Welcome',
   };
+  
+  
+
   render() {
     const {navigate} = this.props.navigation;
     return (
@@ -31,7 +35,7 @@ class App extends Component {
 
         <View style={{color:'white',alignItems:'center',marginTop:10}}>
                 {this.props.items.map((v,k)=>(
-                  <Text key={k} style={{color:'white',fontSize:18}}>{v}</Text>
+                  <Text key={k} style={{color:'white',fontSize:18}}>{v}  helloi</Text>
                 ))}
         </View>
 
@@ -39,6 +43,14 @@ class App extends Component {
         <View style={{padding:10,alignContent:'center',alignItems:'center'}}>
         <Text style={{fontSize:30,color:'white'}}>Thunk Redux Async Counter</Text>
           <Text style={{fontSize:30,color:'white'}}>{this.props.countAsync}</Text>
+        <Button block light onPress={()=>{this.props.plusAsync(1)}}><Text>Counter+1</Text></Button>
+          </View>
+
+
+                  <Text style={{textAlign:'center'}}> Change B/w Thunk and Saga in code</Text>
+          <View style={{padding:10,alignContent:'center',alignItems:'center'}}>
+        <Text style={{fontSize:30,color:'white'}}>Redux Saga Async Counter</Text>
+          <Text style={{fontSize:30,color:'white'}}>{this.props.countSaga}</Text>
         <Button block light onPress={()=>{this.props.plusAsync(1)}}><Text>Counter+1</Text></Button>
           </View>
 
@@ -51,13 +63,15 @@ class App extends Component {
 
 const styles = StyleSheet.create({});
 
-
 const mapStatetoProps = (state)=>{
   console.log(state)
+
+
   return {
     counter:state.store.count,
     items:state.store.items,
-    countAsync:state.store.countAsync
+    countAsync:state.store.countAsync,
+    countSaga:state.store.countSaga
   }
 }
 
@@ -67,7 +81,9 @@ const mapDispatchtoProps = (dispatch)=>{
   return{
     plus:(val)=>dispatch(add(val)),
     additem:(val)=>dispatch(additem('name')),
-    plusAsync:(val)=>dispatch(addAsyncHandler(val))
+    // plusAsync:(val)=>dispatch(addAsyncHandler(val)) //Thunk
+    plusAsync:(val)=>dispatch(addsaga(val)) //saga
+
   }
 }
 

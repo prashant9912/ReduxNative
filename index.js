@@ -19,7 +19,8 @@ const store = configureStore()
 
 
 
-  const Redux = ()=>
+
+  const Redux = () =>
   <Provider store={store}>
       <Router/>
   </Provider>

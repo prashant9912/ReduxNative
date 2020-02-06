@@ -8,6 +8,7 @@ import {ADD,DELETE, ADD_ITEM } from './actions'
 const initialState = {
     count:0,
     countAsync:0,
+    countSaga:0,
     items:[]
 }
 
@@ -30,14 +31,24 @@ const reducer = (state = initialState, action ) =>{
             })
 
         }
-
-        case 'ADD_Async':{
+    
+        case 'ADD_Async':{ //for  thunk
             console.log(state)
             return({
                 ...state,
                 countAsync:state.countAsync+action.data
             })
         }
+
+        case 'ADDSAGA':{  //for saga
+            console.log(state)
+             return ({
+                 ...state,
+                 countSaga:state.countSaga + action.data
+             });
+        }
+
+        
         // case ADD_ITEM:
         //     return{
         //         ...state.items,

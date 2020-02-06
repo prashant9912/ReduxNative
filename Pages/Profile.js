@@ -3,6 +3,8 @@ import { Text, StyleSheet, View } from 'react-native'
 import { connect } from 'react-redux'
 
 class Profile extends Component {
+
+    
     render() {
         return (
             <View style={{padding:10}}>
