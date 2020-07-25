@@ -46,5 +46,13 @@ export const addsaga = (count)=>({
 
 
 
+/*
+The idea is that a saga is similar to a separate thread in your application that’s solely 
+responsible for side effects. However, unlike Redux-Thunk, which utilizes callback functions,
+a Redux-Saga thread can be started, paused and cancelled from the main application with normal
+Redux actions. Like Redux-Thunk, Redux-Saga has access to the full Redux application state and it 
+can dispatch Redux actions as well.*/
+
+
 
  // add more actions
