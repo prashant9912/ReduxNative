@@ -20,7 +20,7 @@ export const ADD_ITEM = 'ADD_ITEM'
  }
 
 
-//Async for thunk
+//Async for thunk -- allow asyn request too
  export const addAsync =  (count)=>(
     {
         type: 'ADD_Async',
